@@ -3,15 +3,21 @@ from time import sleep
 from json2html import * 
 import requests, psycopg2, json
 from flask import Flask, render_template, request
+from flask_wtf import flaskfrom
+from wtforms import StringField, PasswordField, BooleanField
+from wtforms.validators import InputRequired, Email, Length
+from flask_sqlalchemy  import SQLAlchemy
+from werkzeug.security import generate_password_hash, check_password_hash
+from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 
 # Connection to DB
-conn = psycopg2.connect(database="nft_test", user = "postgres", password = "PASSWORD", host = "127.0.0.1", port = "5432")
+conn = psycopg2.connect(database="nft_test", user = "postgres", password = "20032009", host = "127.0.0.1", port = "5432")
 
 url = "https://solana-gateway.moralis.io/nft/mainnet/{}/metadata"
 
 headers = {
     "accept": "application/json",
-    "X-API-Key": "YOUR OWN API-KEY"
+    "X-API-Key": "z1SWBbYXT9C5u4QlvAAqxr6q2WIgJWbClpY9o2ESQfdSKOA4VRxTm9WoZmH2Zrnj"
 }
 
 app = Flask(__name__)
